@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/crsandeep/simple-react-full-stack.svg?branch=master)](https://travis-ci.org/crsandeep/simple-react-full-stack)
 
 Я клонировала boilerplate, содержащий React, Node.js, Express и Webpack.
+Вручную настроила TypeScript и PostgreSQL.
 
 ## Бастрый старт
 
