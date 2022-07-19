@@ -1,6 +1,9 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb"],
+  "extends": [
+    "airbnb",
+    "airbnb-typescript"
+  ],
   "env": {
     "browser": true,
     "node": true
@@ -8,6 +11,27 @@
   "rules": {
     "no-console": "off",
     "comma-dangle": "off",
-    "react/jsx-filename-extension": "off"
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    }
   }
 }
