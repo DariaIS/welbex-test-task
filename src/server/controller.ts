@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import db from './db';
 
-interface IComp {
+type IComp = {
     date: Date;
     name: string;
     number: number;

@@ -1,5 +1,68 @@
-.buttonsSection {
-    display: flex;
-    justify-content: space-between;
-    margin: 8px 0;
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow: hidden;
+
+    &:not(:last-child) {
+        margin-bottom: 5rem;
+    }
+}
+
+.thead {
+    // background-color: $color-main;
+    color: white;
+}
+
+.tbody {
+    // border: 1px solid $gray--lighten;
+
+    // tr:nth-child(even) {
+    //     // background-color: $gray--lighten;
+    // }
+}
+
+.th {
+    font-weight: 400;
+}
+
+.th,
+.td {
+    border: none;
+    padding: 20px 20px 20px 30px;
+    text-align: left;
+}
+
+.thSortable {
+    &:hover {
+        text-decoration: underline;
+    }
+
+    cursor: pointer;
+}
+
+.descending {
+    &::after {
+        content: '\21E7';
+        display: inline-block;
+        margin-left: 0.5rem;
+    }
+}
+
+.ascending {
+    &::after {
+        content: '\21E9';
+        display: inline-block;
+        margin-left: 0.5rem;
+    }
+}
+
+.link {
+    font-weight: 600;
+    // color: $color-main;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
