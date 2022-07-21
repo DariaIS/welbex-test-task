@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 type IComp = {
     date: Date;
@@ -9,7 +9,9 @@ type IComp = {
 
 type Props = {
     // headers: string[];
-    data: IComp[]
+    data: IComp[];
+    page: number;
+    rowsPerPage: number;
 };
 
 type ISortConfig = {
@@ -18,13 +20,28 @@ type ISortConfig = {
 };
 
 export const useTable = (props: Props) => {
-    console.log(props.data)
     const [sortConfig, setSortConfig] = useState<ISortConfig>({
         key: null,
         direction: null
     });
+    const [range, setRange] = useState([0]);
+    const [slice, setSlice] = useState<IComp[]>([]);
 
-    const sortedItems = useMemo(() => {
+    const calculateRange = (data: IComp[], rowsPerPage: number) => {
+        const range = [];
+        const num = Math.ceil(data.length / rowsPerPage);
+        for (let i = 1; i <= num; i++) {
+            range.push(i);
+        }
+        return range;
+    };
+
+    const sliceData = (data: IComp[], page: number, rowsPerPage: number) => {
+        return data.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+    };
+
+    const items = useMemo(() => {
+        console.log('sort!')
         let sortableItems = [...props.data];
         if (sortConfig !== null) {
             sortableItems.sort((a, b) => {
@@ -50,9 +67,19 @@ export const useTable = (props: Props) => {
         setSortConfig({ key, direction });
     }
 
+    useEffect(() => {
+        const range = calculateRange(items, props.rowsPerPage);
+        setRange([...range]);
+
+        const slice = sliceData(items, props.page, props.rowsPerPage);
+        setSlice([...slice]);
+    }, [items, setRange, props.page, setSlice]);
+
     return {
-        items: sortedItems,
+        items,
         requestSort,
-        sortConfig
+        sortConfig,
+        slice, 
+        range
     };
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
 
-import { Table } from '../components/Table';
+import { Table } from './sections/Table';
 
 export const Home: React.FC = () => {
 
@@ -25,20 +25,19 @@ export const Home: React.FC = () => {
     }, []);
 
     return (
-        <>
-        fsdfsd
+        <div className='pageContainer'>
             {data &&
                 <Table
                     headers={[
                         { columnName: 'Дата', columnKey: 'date' },
-                        { columnName: 'Название', columnKey: 'date' },
-                        { columnName: 'Количество', columnKey: 'date' },
-                        { columnName: 'Расстояние', columnKey: 'date' },
+                        { columnName: 'Название', columnKey: 'name' },
+                        { columnName: 'Количество', columnKey: 'number' },
+                        { columnName: 'Расстояние', columnKey: 'distance' },
 
                     ]}
                     data={data}
                 />
             }
-        </>
+        </div>
     );
 };

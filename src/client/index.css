@@ -14,3 +14,9 @@ code {
   display: flex;
   min-height: calc(100vh - var(--header-height));
 }
+
+.pageContainer {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1110px;
+}
