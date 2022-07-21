@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import db from './db';
 
 type IComp = {
-    date: Date;
+    date: string;
     name: string;
     number: number;
     distance: string;
@@ -20,6 +20,7 @@ export const Controller = {
                 }
                 else {
                     const comp: IComp[] = result.rows;
+                    comp.forEach(elem => elem.date = new Date(elem.date).toLocaleDateString());
                     res.header("Access-Control-Allow-Origin", "*");
                     res.json(comp);
                 }

@@ -1,11 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 
-type IComp = {
-    date: Date;
-    name: string;
-    number: number;
-    distance: string;
-}
+import { IComp } from 'Common/Types/IComp';
 
 type Props = {
     // headers: string[];
@@ -26,6 +21,9 @@ export const useTable = (props: Props) => {
     });
     const [range, setRange] = useState([0]);
     const [slice, setSlice] = useState<IComp[]>([]);
+    const [field, setField] = useState<keyof IComp>('date');
+    const [condition, setCondition] = useState('equals');
+    const [condValue, setCondValue] = useState();
 
     const calculateRange = (data: IComp[], rowsPerPage: number) => {
         const range = [];
@@ -40,9 +38,8 @@ export const useTable = (props: Props) => {
         return data.slice((page - 1) * rowsPerPage, page * rowsPerPage);
     };
 
-    const items = useMemo(() => {
-        console.log('sort!')
-        let sortableItems = [...props.data];
+    const sorting = (data: IComp[]) => {
+        let sortableItems = [...data];
         if (sortConfig !== null) {
             sortableItems.sort((a, b) => {
                 if (sortConfig.key) {
@@ -57,7 +54,26 @@ export const useTable = (props: Props) => {
             });
         }
         return sortableItems;
-    }, [props.data, sortConfig]);
+    }
+
+    const filter = (data: IComp[]) => {
+        let filterItems = [...data];
+        console.log(filterItems);
+        if (field && condition && condValue) {
+            if (condition === 'equals') {
+                filterItems = data.filter(element => element[field] == condValue);
+                console.log(data);
+                console.log(filterItems);
+            }
+        }
+        console.log('dasds');
+        return filterItems;
+    }
+
+    const items = useMemo(() => {
+        console.log('sort!')
+        return filter(sorting(props.data));
+    }, [field, condition, condValue, sortConfig]);
 
     const requestSort = (key: keyof IComp) => {
         let direction = 'ascending';
@@ -65,6 +81,25 @@ export const useTable = (props: Props) => {
             direction = 'descending';
         }
         setSortConfig({ key, direction });
+    }
+
+    const handleChange = (e: { target: any; }) => {
+        switch (e.target.name) {
+            case 'field':
+                console.log(e.target.value.trim());
+                setField(e.target.value.trim());
+                break;
+            case 'condition':
+                console.log(e.target.value.trim());
+                setCondition(e.target.value.trim());
+                break;
+            case 'condValue':
+                console.log(e.target.value.trim());
+                setCondValue(e.target.value.trim());
+                break;
+            default:
+                break;
+        };
     }
 
     useEffect(() => {
@@ -76,10 +111,10 @@ export const useTable = (props: Props) => {
     }, [items, setRange, props.page, setSlice]);
 
     return {
-        items,
         requestSort,
         sortConfig,
-        slice, 
-        range
+        slice,
+        range,
+        handleChange
     };
 };

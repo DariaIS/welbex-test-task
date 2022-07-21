@@ -2,20 +2,15 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
 
+import { IComp } from 'Common/Types/IComp';
+
 import { Table } from './sections/Table';
 
 export const Home: React.FC = () => {
-
-    type IComp = {
-        date: Date;
-        name: string;
-        number: number;
-        distance: string;
-    }
-
     const [data, setData] = useState<IComp[]>();
 
     useEffect(() => {
+        console.log('effect')
         Axios.get('http://localhost:8080/api/comps')
             .then((response) => {
                 setData(response.data);
@@ -33,7 +28,6 @@ export const Home: React.FC = () => {
                         { columnName: 'Название', columnKey: 'name' },
                         { columnName: 'Количество', columnKey: 'number' },
                         { columnName: 'Расстояние', columnKey: 'distance' },
-
                     ]}
                     data={data}
                 />
