@@ -6,6 +6,8 @@
 .left {
     display: flex;
     flex-direction: column;
+    margin-right: 5rem;
+    box-sizing: border-box;
 }
 
 .table {
@@ -42,6 +44,7 @@
     border: none;
     padding: 20px 20px 20px 30px;
     text-align: left;
+    font-family: var(--font-family);
 }
 
 .thSortable {
@@ -50,22 +53,6 @@
     }
 
     cursor: pointer;
-}
-
-.descending {
-    &::after {
-        content: '\21E7';
-        display: inline-block;
-        margin-left: 0.5rem;
-    }
-}
-
-.ascending {
-    &::after {
-        content: '\21E9';
-        display: inline-block;
-        margin-left: 0.5rem;
-    }
 }
 
 .link {
@@ -80,6 +67,7 @@
 .pagination {
     display: flex;
     justify-content: center;
+    font-family: var(--font-family);
 }
 
 .paginationButton {
@@ -99,4 +87,26 @@
 .inactive {
     color: #2c3e50;
     background: var(--gray-light);
+}
+
+.label,
+select,
+.option {
+    font-family: var(--font-family);
+}
+
+.label {
+    &:not(:last-child) {
+        margin-bottom: 0.1rem;
+    }
+}
+
+.select {
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+    padding: 0.2rem 0.2rem;
+    
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
 }

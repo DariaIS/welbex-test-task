@@ -43,16 +43,16 @@ export const Table: React.FC<ITable> = ({ headers, data }) => {
     return (
         <div className={s.section}>
             <div className={s.left}>
-                <label htmlFor="field">Выберите поле:</label>
-                <select name="field" onChange={(e) => handleChange(e)}>
-                    {headers.map((elem, index) => <option key={index} value={elem.columnKey}>{elem.columnName}</option>)}
+                <label htmlFor="field" className={s.label}>Выберите поле:</label>
+                <select name="field" className={s.select} onChange={(e) => handleChange(e)}>
+                    {headers.map((elem, index) => <option key={index} className={s.option} value={elem.columnKey}>{elem.columnName}</option>)}
                 </select>
-                <label htmlFor="condition">Выберите условие:</label>
-                <select name="condition" onChange={(e) => handleChange(e)}>
-                    <option value="equals">Равно</option>
-                    <option value="includes">Содержит</option>
-                    <option value="greater">Больше</option>
-                    <option value="lesser">Меньше</option>
+                <label htmlFor="condition" className={s.label}>Выберите условие:</label>
+                <select name="condition" className={s.select} onChange={(e) => handleChange(e)}>
+                    <option className={s.option} value="equals">Равно</option>
+                    <option className={s.option} value="includes">Содержит</option>
+                    <option className={s.option} value="greater">Больше</option>
+                    <option className={s.option} value="lesser">Меньше</option>
                 </select>
                 <Input type='text' placeholder='Значение' name="condValue" onChange={(e) => handleChange(e)} />
             </div>
