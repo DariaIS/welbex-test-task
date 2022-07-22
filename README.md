@@ -13,7 +13,33 @@ git clone https://github.com/DariaIS/welbex-test-task/
 
 # Переход в директорию
 cd welbex-test-task
+```
 
+# Настройка базы данных
+Для работы с бд необходимо скачать PostgreSQL
+
+```bash
+# Вход в базу данных из папки с PostgreSQL, и ввод пароля
+psql -U postgres
+
+# Создание базы данных
+create database welbex;
+
+# Подключение к базе данных
+\connect welbex;
+```
+
+В данном файле содержатся SQL запросы для создания и заполнения таблицы базы данных, которые необходимо выполнить после подключения к базе данных
+```
+.
+└── src/                     
+     └── server/            
+         └── database.sql
+```
+
+# Сборка проекта
+
+```bash
 # Установка зависимостей
 yarn (or npm install)
 
