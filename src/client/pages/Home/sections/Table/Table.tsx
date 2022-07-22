@@ -51,8 +51,8 @@ export const Table: React.FC<ITable> = ({ headers, data }) => {
                 <select name="condition" onChange={(e) => handleChange(e)}>
                     <option value="equals">Равно</option>
                     <option value="includes">Содержит</option>
-                    <option value="more">Больше</option>
-                    <option value="less">Меньше</option>
+                    <option value="greater">Больше</option>
+                    <option value="lesser">Меньше</option>
                 </select>
                 <Input type='text' placeholder='Значение' name="condValue" onChange={(e) => handleChange(e)} />
             </div>

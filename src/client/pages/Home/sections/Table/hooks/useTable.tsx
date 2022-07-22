@@ -3,7 +3,6 @@ import { useState, useMemo, useEffect } from 'react';
 import { IComp } from 'Common/Types/IComp';
 
 type Props = {
-    // headers: string[];
     data: IComp[];
     page: number;
     rowsPerPage: number;
@@ -23,7 +22,7 @@ export const useTable = (props: Props) => {
     const [slice, setSlice] = useState<IComp[]>([]);
     const [field, setField] = useState<keyof IComp>('date');
     const [condition, setCondition] = useState('equals');
-    const [condValue, setCondValue] = useState();
+    const [condValue, setCondValue] = useState('');
 
     const calculateRange = (data: IComp[], rowsPerPage: number) => {
         const range = [];
@@ -58,20 +57,37 @@ export const useTable = (props: Props) => {
 
     const filter = (data: IComp[]) => {
         let filterItems = [...data];
-        console.log(filterItems);
+        // console.log(filterItems);
         if (field && condition && condValue) {
-            if (condition === 'equals') {
-                filterItems = data.filter(element => element[field] == condValue);
-                console.log(data);
-                console.log(filterItems);
+            switch (condition) {
+                case 'equals':
+                    return filterItems = data.filter(element => element[field] == condValue);
+                case 'includes':
+                    return filterItems = data.filter(element => {
+                        console.log(element[field]);
+                        console.log(condValue);
+                        console.log(element[field].toString().includes(condValue));
+                        return element[field].toString().includes(condValue)
+                    });
+                default:
+                    return filterItems = data.filter(element => {
+                        if (field == 'date') {
+                            let condTempValue = new Date((condValue.toString().split('.')[2]
+                                + '-' + condValue.toString().split('.')[1]
+                                + '-' + condValue.toString().split('.')[0]));
+                            let elemTempValue = new Date((element[field].toString().split('.')[2]
+                                + '-' + element[field].toString().split('.')[1]
+                                + '-' + element[field].toString().split('.')[0]));
+                            return condition == 'greater' ? elemTempValue > condTempValue : elemTempValue < condTempValue;
+                        }
+                        return condition == 'greater' ? element[field] > condValue : element[field] < condValue;
+                    });
             }
         }
-        console.log('dasds');
         return filterItems;
     }
 
     const items = useMemo(() => {
-        console.log('sort!')
         return filter(sorting(props.data));
     }, [field, condition, condValue, sortConfig]);
 
@@ -86,15 +102,12 @@ export const useTable = (props: Props) => {
     const handleChange = (e: { target: any; }) => {
         switch (e.target.name) {
             case 'field':
-                console.log(e.target.value.trim());
                 setField(e.target.value.trim());
                 break;
             case 'condition':
-                console.log(e.target.value.trim());
                 setCondition(e.target.value.trim());
                 break;
             case 'condValue':
-                console.log(e.target.value.trim());
                 setCondValue(e.target.value.trim());
                 break;
             default:
