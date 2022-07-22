@@ -5,7 +5,7 @@
 Я клонировала boilerplate, содержащий React, Node.js, Express и Webpack.
 Вручную настроила TypeScript и PostgreSQL.
 
-## Бастрый старт
+## Начало работы
 
 ```bash
 # Клоирование репозитория
