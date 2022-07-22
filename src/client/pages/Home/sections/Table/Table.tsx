@@ -10,7 +10,9 @@ import s from './table.module.scss';
 
 type ITable = {
     headers: {
+        //название колонки таблицы
         columnName: string;
+        //свойство, соответсвующее колонке
         columnKey: keyof IComp;
     }[];
     data: IComp[];
@@ -27,6 +29,7 @@ export const Table: React.FC<ITable> = ({ headers, data }) => {
         handleChange
     } = useTable({ data, page, rowsPerPage: 5 });
 
+    //функция, которая возвращает имя класса, соотвествующее направлению сортировки
     const getClassNamesFor = (name: string) => {
         if (!sortConfig) {
             return;
@@ -68,8 +71,10 @@ export const Table: React.FC<ITable> = ({ headers, data }) => {
                         </tr>
                     </thead>
                     <tbody className={s.tbody}>
+                        {/* вывод записей таблицы с учетом пагинации */}
                         {slice.map((obj, index) => (
                             <tr key={index} className={s.tr}>
+                                {/* вывод всех значений свойств объекта на основе имени свойства  */}
                                 {(Object.keys(slice[0]) as (keyof typeof obj)[]).map((elem, i) => (
                                     elem in obj && <td key={i} className={s.td}>{obj[elem].toString()}</td>
                                 ))}
