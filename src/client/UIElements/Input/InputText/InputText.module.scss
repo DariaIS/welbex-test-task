@@ -1,0 +1,19 @@
+.inputText {
+    background: var(--white);
+    border: none;
+    transition: 0.3s;
+    border-radius: 5px;
+    padding: 0.2rem 0.2rem;
+    font-family: var(--font-family);
+    border: 1px solid var(--gray);
+    color: var(--black);
+
+    &:focus {
+        border-color: var(--color-primary);
+        outline: none;
+    }
+
+    &::placeholder {
+        color: var(--gray);
+    }
+}

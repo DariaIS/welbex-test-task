@@ -7,4 +7,4 @@ const pool = new Pool({
     database: 'welbex'
 })
 
-module.exports = pool;
+export default pool;

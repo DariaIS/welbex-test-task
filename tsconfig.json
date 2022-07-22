@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "jsx": "react",
+    "target": "es2016", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "module": "commonjs", /* Specify what module code is generated. */
+    "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
+    "strict": true, /* Enable all strict type-checking options. */
+    "skipLibCheck": true, /* Skip type checking all .d.ts files. */
+    "moduleResolution": "node",
+    "paths": {
+      "Src/*": ["./src/*"],
+      "Common/UI/*": ["./src/client/UIElements/*"],
+      "Common/UI/": ["./src/client/UIElements/"],
+      "Common/Pages/*": ["./src/client/pages/*"],
+      "Common/Pages": ["./src/client/pages"],
+      "Common/Types/*": ["./src/client/types/*"],
+      "Common/Types": ["./src/client/types"],
+    }
+  },
+  "include": ["./src/client/**/*"],
+  "typeRoots": ["node_modules/@types", "./src/@types"]
+}
