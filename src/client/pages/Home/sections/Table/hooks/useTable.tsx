@@ -64,9 +64,6 @@ export const useTable = (props: Props) => {
                     return filterItems = data.filter(element => element[field] == condValue);
                 case 'includes':
                     return filterItems = data.filter(element => {
-                        console.log(element[field]);
-                        console.log(condValue);
-                        console.log(element[field].toString().includes(condValue));
                         return element[field].toString().includes(condValue)
                     });
                 default:

@@ -10,7 +10,6 @@ export const Home: React.FC = () => {
     const [data, setData] = useState<IComp[]>();
 
     useEffect(() => {
-        console.log('effect')
         Axios.get('http://localhost:8080/api/comps')
             .then((response) => {
                 setData(response.data);

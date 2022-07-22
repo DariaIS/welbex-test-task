@@ -15,4 +15,6 @@ html {
     --color-accept: #00A550;
 
     --font-size: 1rem;
+    --font-family:                'Roboto', -apple-system, BlinkMacSystemFont, 'Roboto', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', 'Arial', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
 }
