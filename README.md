@@ -15,7 +15,7 @@ git clone https://github.com/DariaIS/welbex-test-task/
 cd welbex-test-task
 ```
 
-# Настройка базы данных
+## Настройка базы данных
 Для работы с бд необходимо скачать PostgreSQL
 
 ```bash
@@ -37,7 +37,7 @@ create database welbex;
          └── database.sql
 ```
 
-# Сборка проекта
+## Сборка проекта
 
 ```bash
 # Установка зависимостей
