@@ -1,13 +1,30 @@
 import { Request, Response } from 'express';
 
-const db = require('./db');
+import db from './db';
 
-class Controller {
-    async GetComps(req: Request, res: Response) {
-        const comp = await db.query('SELECT * FROM comp');
-        res.header("Access-Control-Allow-Origin", "*");
-        res.json(comp.rows);
-    }
+type IComp = {
+    date: string;
+    name: string;
+    number: number;
+    distance: string;
 }
 
-module.exports = new Controller();
+export const Controller = {
+    GetComps: async (req: Request, res: Response) => {
+        await db.query(
+            'SELECT date, name, number, distance FROM comp',
+            (error: Error, result: { rows: IComp[]; }) => {
+                if (error) {
+                    res.send({ error: error });
+                    throw error;
+                }
+                else {
+                    const comp: IComp[] = result.rows;
+                    comp.forEach(elem => elem.date = new Date(elem.date).toLocaleDateString());
+                    res.header("Access-Control-Allow-Origin", "*");
+                    res.json(comp);
+                }
+            }
+        );
+    }
+}

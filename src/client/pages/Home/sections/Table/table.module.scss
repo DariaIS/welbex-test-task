@@ -1,0 +1,102 @@
+.section {
+    margin: 100px 0 100px 0;
+    display: flex;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow: hidden;
+
+    &:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+}
+
+.thead {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.tbody {
+    border: 1px solid var(--gray-light);
+
+    tr:nth-child(even) {
+        background-color: var(--gray-light);
+    }
+}
+
+.th {
+    font-weight: 400;
+}
+
+.th,
+.td {
+    border: none;
+    padding: 20px 20px 20px 30px;
+    text-align: left;
+}
+
+.thSortable {
+    &:hover {
+        text-decoration: underline;
+    }
+
+    cursor: pointer;
+}
+
+.descending {
+    &::after {
+        content: '\21E7';
+        display: inline-block;
+        margin-left: 0.5rem;
+    }
+}
+
+.ascending {
+    &::after {
+        content: '\21E9';
+        display: inline-block;
+        margin-left: 0.5rem;
+    }
+}
+
+.link {
+    font-weight: 600;
+    color: var(--color-primary);
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.paginationButton {
+    border: none;
+    padding: 7px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.active {
+    color: white;
+    background: var(--color-primary);
+}
+
+.inactive {
+    color: #2c3e50;
+    background: var(--gray-light);
+}
